@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "NetConf2024Search.API": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7170"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 30345,
+      "useSSL": false
+    }
+  }
+}

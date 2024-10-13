@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetConf2024Search.API", "NetConf2024Search.API\NetConf2024Search.API.csproj", "{1B461109-07A7-44FD-8047-6F2973FFE6AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetConf2024Search.Seeder", "NetConf2024Search.Seeder\NetConf2024Search.Seeder.csproj", "{7D897E83-0A42-4349-B989-1F61D0E13DB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B461109-07A7-44FD-8047-6F2973FFE6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B461109-07A7-44FD-8047-6F2973FFE6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B461109-07A7-44FD-8047-6F2973FFE6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B461109-07A7-44FD-8047-6F2973FFE6AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D897E83-0A42-4349-B989-1F61D0E13DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D897E83-0A42-4349-B989-1F61D0E13DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D897E83-0A42-4349-B989-1F61D0E13DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D897E83-0A42-4349-B989-1F61D0E13DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E0CD4FA-2DF0-4C89-8473-ADD7B92BDCC8}
+	EndGlobalSection
+EndGlobal
