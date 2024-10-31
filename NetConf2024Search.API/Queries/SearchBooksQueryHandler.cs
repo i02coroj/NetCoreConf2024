@@ -13,14 +13,12 @@ using NetConf2024Search.API.Model;
 namespace NetConf2024Search.API.Queries;
 
 public class SearchBooksQueryHandler(
-    TelemetryClient telemetryClient,
-    IKeyVaultHelper keyVaultHelper,
+    TelemetryClient _telemetryClient,
+    IKeyVaultHelper _keyVaultHelper,
     IOptions<SearchSettingsDto> searchSettings) : IRequestHandler<SearchBooksQuery, SearchBooksQueryResponse>
 {
     private SearchClient? _searchClient;
-    private readonly TelemetryClient _telemetryClient = telemetryClient ?? throw new ArgumentNullException(nameof(telemetryClient));
     private readonly SearchSettingsDto _searchSettings = searchSettings?.Value ?? throw new ArgumentNullException(nameof(searchSettings));
-    private readonly IKeyVaultHelper _keyVaultHelper = keyVaultHelper ?? throw new ArgumentNullException(nameof(keyVaultHelper));
     private readonly string _indexName = "books-index";
 
     public async Task<SearchBooksQueryResponse> Handle(
@@ -45,7 +43,6 @@ public class SearchBooksQueryHandler(
 
         var results = await _searchClient!.SearchAsync<Book>(query.SearchTerm, options, cancellationToken).ConfigureAwait(false);
         var searchId = LogSearchTelemetry(query.SearchTerm, results);
-
         var pagedResults = ((SearchResults<Book>)results).GetResults();
         return new SearchBooksQueryResponse
         {

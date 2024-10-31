@@ -1,7 +1,6 @@
 ﻿using Azure.Search.Documents.Models;
 using Azure;
 using MediatR;
-using Microsoft.ApplicationInsights;
 using Azure.Search.Documents;
 using Azure.Core;
 using Azure.Search.Documents.Indexes;
@@ -13,14 +12,11 @@ using NetConf2024Search.API.Model;
 namespace NetConf2024Search.API.Queries;
 
 public class SearchBooksSemanticQueryHandler(
-    TelemetryClient telemetryClient,
-    IKeyVaultHelper keyVaultHelper,
+    IKeyVaultHelper _keyVaultHelper,
     IOptions<SearchSettingsDto> searchSettings) : IRequestHandler<SearchBooksSemanticQuery, SearchBooksSemanticQueryResponse>
 {
     private SearchClient? _searchClient;
-    private readonly TelemetryClient _telemetryClient = telemetryClient ?? throw new ArgumentNullException(nameof(telemetryClient));
     private readonly SearchSettingsDto _searchSettings = searchSettings?.Value ?? throw new ArgumentNullException(nameof(searchSettings));
-    private readonly IKeyVaultHelper _keyVaultHelper = keyVaultHelper ?? throw new ArgumentNullException(nameof(keyVaultHelper));
     private readonly string _indexName = "books-index";
 
     public async Task<SearchBooksSemanticQueryResponse> Handle(
@@ -45,7 +41,6 @@ public class SearchBooksSemanticQueryHandler(
         };
 
         var results = await _searchClient!.SearchAsync<Book>(query.SearchTerm, options, cancellationToken).ConfigureAwait(false);
-
         var pagedResults = ((SearchResults<Book>)results).GetResults();
         return new SearchBooksSemanticQueryResponse
         {

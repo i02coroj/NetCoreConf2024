@@ -5,24 +5,14 @@ using NetConf2024Search.API.Helpers;
 
 namespace NetConf2024Search.API.Behaviours;
 
-public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class ValidatorBehavior<TRequest, TResponse>(
+    IEnumerable<IValidator<TRequest>> _validators,
+    ILogger<ValidatorBehavior<TRequest, TResponse>> _logger) : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
-    private readonly ILogger<ValidatorBehavior<TRequest, TResponse>> _logger;
-    private readonly IEnumerable<IValidator<TRequest>> _validators;
-
-    public ValidatorBehavior(IEnumerable<IValidator<TRequest>> validators, ILogger<ValidatorBehavior<TRequest, TResponse>> logger)
-    {
-        _validators = validators;
-        _logger = logger;
-    }
-
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var typeName = request.GetGenericTypeName();
-
-        _logger.LogInformation("Validating command {CommandType}", typeName);
-
         var failures = _validators
             .Select(v => v.Validate(request))
             .SelectMany(result => result.Errors)

@@ -8,7 +8,6 @@ using Azure.AI.OpenAI;
 using System.ClientModel;
 using OpenAI.Chat;
 using Azure.AI.OpenAI.Chat;
-using Azure.Search.Documents.Indexes.Models;
 
 namespace NetConf2024Search.API.Queries;
 
@@ -29,7 +28,7 @@ public class SearchBooksOpenAIChatQueryHandler(
         // Azure OpenAI setup
         var apiBase = _openAISettings.OpenAIUri;
         var openAIKey = await _keyVaultHelper.GetSecretAsync(_openAISettings.OpenAIKeySecretName);
-        var deploymentName = "gpt-35-turbo";
+        var deploymentName = _openAISettings.DeploymentName;
 
         // Azure AI Search setup
         var searchKey = await _keyVaultHelper.GetSecretAsync(_searchSettings.SearchAdminApiKeySecretName);
@@ -55,7 +54,6 @@ public class SearchBooksOpenAIChatQueryHandler(
         {
             new UserChatMessage(query.SearchTerm)
         };
-
 
         var completion = await chatClient.CompleteChatAsync(messages, options, cancellationToken);
         var message  = completion.Value.GetMessageContext();

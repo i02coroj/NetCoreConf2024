@@ -7,12 +7,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry;
 using OpenTelemetry.Logs;
+using System.Diagnostics;
 
 namespace NetConf2024Search.API.Helpers;
 
 public static class OpenTelemetryExtensions
 {
-    public static IServiceCollection AddOpenTelemetryWorker(
+    public static IServiceCollection AddCustomOpenTelemetryWorker(
         this IServiceCollection services,
         IConfiguration configuration,
         string serviceName)
@@ -51,7 +52,7 @@ public static class OpenTelemetryExtensions
         return services;
     }
 
-    public static ILoggingBuilder AddIGOpenTelemetryWorker(
+    public static ILoggingBuilder AddCustomOpenTelemetryWorker(
         this ILoggingBuilder builder,
         IConfiguration configuration)
     {
@@ -63,5 +64,10 @@ public static class OpenTelemetryExtensions
 
         return builder;
     }
-}
 
+    public static void LogWithActivity(this ILogger logger, string message, LogLevel level, Activity? activity)
+    {
+        activity?.AddEvent(new ActivityEvent(message));
+        logger.Log(level, message);
+    }
+}

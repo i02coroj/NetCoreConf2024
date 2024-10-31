@@ -68,8 +68,8 @@ public class Seeder(
                 Price = 39.99,
                 NumberOfPages = 447,
                 InStock = false,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Great book!",
@@ -82,7 +82,7 @@ public class Seeder(
                         Author = "Jane Smith",
                         PublishedOn = new DateTime(2023, 1, 29)
                     }
-                },
+                ],
                 Summary = "A thrilling horror novel by Stephen King. The main characters are Jack Torrance, Wendy Torrance, and Danny Torrance. The story revolves around the haunted Overlook Hotel and the descent into madness of Jack Torrance, a struggling writer and recovering alcoholic."
             },
             new Book
@@ -99,8 +99,8 @@ public class Seeder(
                 Price = 19.99,
                 NumberOfPages = 1138,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -108,7 +108,7 @@ public class Seeder(
                         Author = "John Doe",
                         PublishedOn = new DateTime(2024, 3, 10)
                     }
-                },
+                ],
                 Summary = "It is a horror novel that follows a group of friends known as the Losers' Club as they confront an ancient evil entity that takes the form of a clown named Pennywise. The story alternates between their childhood in the 1950s and their adulthood in the 1980s."
             },
             new Book
@@ -125,8 +125,8 @@ public class Seeder(
                 Price = 14.99,
                 NumberOfPages = 374,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -134,7 +134,7 @@ public class Seeder(
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
+                ],
                 Summary = "Pet Sematary is a horror novel about a family who moves to a rural town and discovers a mysterious burial ground in the nearby woods. When they use the burial ground to bring their deceased pet back to life, they unleash a series of horrifying events."
             },
             new Book
@@ -151,8 +151,8 @@ public class Seeder(
                 Price = 14.99,
                 NumberOfPages = 310,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -160,7 +160,7 @@ public class Seeder(
                         Author = "John Doe",
                         PublishedOn = new DateTime(2024, 3, 10)
                     }
-                },
+                ],
                 Summary = "Misery is a psychological thriller about an author who is held captive by his number one fan after a car accident. As the fan's obsession with the author grows, she becomes increasingly violent and controlling."
             },
             new Book
@@ -177,8 +177,8 @@ public class Seeder(
                 Price = 19.99,
                 NumberOfPages = 1153,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -186,7 +186,7 @@ public class Seeder(
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
+                ],
                 Summary = "The Stand is a post-apocalyptic novel that depicts a world devastated by a superflu pandemic. The story follows a group of survivors as they navigate the aftermath and confront the forces of good and evil in a battle for the future of humanity."
             },
             new Book
@@ -203,15 +203,15 @@ public class Seeder(
                 Price = 29.99,
                 NumberOfPages = 223,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "I love this book!",
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "The first book in the Harry Potter series, introducing the magical world of Hogwarts. The main characters are Harry Potter, Ron Weasley, and Hermione Granger. The story follows Harry Potter as he discovers his magical abilities, attends Hogwarts School of Witchcraft and Wizardry, and faces the dark wizard Lord Voldemort."
             },
             new Book
@@ -228,15 +228,15 @@ public class Seeder(
                 Price = 19.99,
                 NumberOfPages = 310,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Great book!",
                         Author = "John Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "A classic fantasy adventure by J.R.R. Tolkien. The main characters are Bilbo Baggins, Gandalf, and Thorin Oakenshield. The story follows Bilbo Baggins, a hobbit who is swept into an epic quest to reclaim the Lonely Mountain and its treasure from the dragon Smaug."
             },
             new Book
@@ -253,15 +253,15 @@ public class Seeder(
                 Price = 19.99,
                 NumberOfPages = 1178,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "One of the greatest fantasy novels of all time!",
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "An epic fantasy trilogy that follows the journey of the One Ring. The main characters are Frodo Baggins, Aragorn, and Gandalf. The story depicts the struggle against the dark lord Sauron and the quest to destroy the One Ring and save Middle-earth."
             },
             new Book
@@ -278,21 +278,21 @@ public class Seeder(
                 Price = 10.99,
                 NumberOfPages = 272,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Exciting read!",
                         Author = "John Doe",
                         PublishedOn = new DateTime(2024, 3, 10)
                     }
-                },
+                ],
                 Summary = "A gripping mystery novel by Agatha Christie. The main characters are Justice Lawrence Wargrave, Vera Claythorne, and Philip Lombard. The story revolves around ten strangers who are lured to a secluded island and accused of past crimes, leading to a series of murders."
             },
             new Book
             {
                 Id = Guid.NewGuid(),
-                Title = ".Net Core Conf Barcelona 2024",
+                Title = ".Net Core Conf Madrid 2024",
                 Reference = "978-0-123-45678-NetCoreConf",
                 Gendre = "I.T.",
                 AuthorId = _authors[4].Id,
@@ -303,16 +303,16 @@ public class Seeder(
                 Price = 24.99,
                 NumberOfPages = 365,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Amazing event!",
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
-                Summary = "One of the essential events of the Microsoft community. Very interesting talks that address the different newest topics on the technological scene. With an organization that reviews each of the details to have the best experience. In session 1 in room 3 we can find José Alberto Coronado speaking abot Azure AI Search.\r\n"
+                ],
+                Summary = "One of the essential events of the Microsoft community. Very interesting talks that address the different newest topics on the technological scene. With an organization that reviews each of the details to have the best experience. In session 2 in room 4 at 10:15 we can find José Alberto Coronado speaking abot Azure AI Search.\r\n"
             },
             new Book
             {
@@ -328,15 +328,15 @@ public class Seeder(
                 Price = 29.99,
                 NumberOfPages = 365,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "A must-read for Tolkien fans!",
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "A collection of mythopoeic works by J.R.R. Tolkien. The Silmarillion provides the background and history of Middle-earth, including the creation of the world, the wars among the Elves, and the rise and fall of Morgoth, the first Dark Lord."
             },
             new Book
@@ -353,15 +353,15 @@ public class Seeder(
                 Price = 29.99,
                 NumberOfPages = 251,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Another magical adventure!",
                         Author = "John Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "The second book in the Harry Potter series. Harry Potter returns to Hogwarts School of Witchcraft and Wizardry for his second year, where he encounters the mysterious Chamber of Secrets and the monster within."
             },
             new Book
@@ -378,15 +378,15 @@ public class Seeder(
                 Price = 29.99,
                 NumberOfPages = 317,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Thrilling and full of surprises!",
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "The third book in the Harry Potter series. Harry Potter learns about the escaped prisoner Sirius Black and the truth about his parents' murder, while facing the Dementors and the time-traveling device called the Time-Turner."
             },
             new Book
@@ -403,15 +403,15 @@ public class Seeder(
                 Price = 29.99,
                 NumberOfPages = 636,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Action-packed and intense!",
                         Author = "John Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "The fourth book in the Harry Potter series. Harry Potter competes in the Triwizard Tournament, facing dangerous challenges and uncovering a plot involving Lord Voldemort's return."
             },
             new Book
@@ -428,15 +428,15 @@ public class Seeder(
                 Price = 29.99,
                 NumberOfPages = 870,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Epic and emotional!",
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "The fifth book in the Harry Potter series. Harry Potter returns to Hogwarts School of Witchcraft and Wizardry, facing new challenges and the rise of Lord Voldemort's forces."
             },
             new Book
@@ -453,15 +453,15 @@ public class Seeder(
                 Price = 29.99,
                 NumberOfPages = 607,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "Intense and captivating!",
                         Author = "John Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "The sixth book in the Harry Potter series. Harry Potter delves into the past and learns more about Lord Voldemort's history, while preparing for the ultimate battle."
             },
             new Book
@@ -478,15 +478,15 @@ public class Seeder(
                 Price = 29.99,
                 NumberOfPages = 607,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new() {
                         Id = Guid.NewGuid(),
                         Text = "A satisfying conclusion!",
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2023, 1, 28)
                     }
-                },
+                ],
                 Summary = "The seventh and final book in the Harry Potter series. Harry Potter and his friends embark on a dangerous mission to destroy the remaining Horcruxes and defeat Lord Voldemort once and for all."
             },
             new Book
@@ -503,8 +503,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 256,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -512,7 +512,7 @@ public class Seeder(
                         Author = "John Doe",
                         PublishedOn = new DateTime(2024, 3, 10)
                     }
-                },
+                ],
                 Summary = "A thrilling murder mystery set on the luxurious Orient Express train. Detective Hercule Poirot must solve the murder of a fellow passenger, using his keen observation and deduction skills."
             },
             new Book
@@ -529,8 +529,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 352,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -538,7 +538,7 @@ public class Seeder(
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
+                ],
                 Summary = "A captivating murder mystery set on a luxurious cruise ship. Detective Hercule Poirot must unravel the complex web of relationships and motives to solve the murder of a young heiress."
             },
             new Book
@@ -555,8 +555,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 288,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -564,7 +564,7 @@ public class Seeder(
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
+                ],
                 Summary = "The Murder of Roger Ackroyd is a classic detective novel featuring Hercule Poirot. When wealthy Roger Ackroyd is found dead, Poirot must unravel the secrets and motives of the suspects to solve the murder."
             },
             new Book
@@ -581,8 +581,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 288,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -590,7 +590,7 @@ public class Seeder(
                         Author = "John Doe",
                         PublishedOn = new DateTime(2024, 3, 10)
                     }
-                },
+                ],
                 Summary = "Murder at the Vicarage is the first novel featuring Miss Marple. When Colonel Protheroe is found dead in the vicar's study, Miss Marple uses her sharp wit and observation skills to uncover the truth."
             },
             new Book
@@ -607,8 +607,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 288,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -616,7 +616,7 @@ public class Seeder(
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
+                ],
                 Summary = "The ABC Murders follows Hercule Poirot as he investigates a series of murders committed in alphabetical order. Poirot must decipher the killer's pattern and identity before they strike again."
             },
             new Book
@@ -633,8 +633,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 288,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -642,7 +642,7 @@ public class Seeder(
                         Author = "John Doe",
                         PublishedOn = new DateTime(2024, 3, 10)
                     }
-                },
+                ],
                 Summary = "The Mysterious Affair at Styles introduces the iconic detective Hercule Poirot. When Emily Inglethorp is found dead, Poirot must use his brilliant deduction skills to solve the murder in her country estate."
             },
             new Book
@@ -659,8 +659,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 288,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -668,7 +668,7 @@ public class Seeder(
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
+                ],
                 Summary = "Five Little Pigs follows Poirot as he investigates a murder that occurred sixteen years ago. Poirot must uncover the truth behind the five suspects' alibis to solve the case."
             },
             new Book
@@ -685,8 +685,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 352,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -694,7 +694,7 @@ public class Seeder(
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
+                ],
                 Summary = "The Secret Adversary introduces the characters Tommy and Tuppence, who become amateur detectives. They must uncover a secret organization and prevent a political conspiracy."
             },
             new Book
@@ -711,8 +711,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 288,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -720,7 +720,7 @@ public class Seeder(
                         Author = "John Doe",
                         PublishedOn = new DateTime(2024, 3, 10)
                     }
-                },
+                ],
                 Summary = "Crooked House is a psychological thriller set in a dysfunctional family. When the patriarch is murdered, the family members become suspects, and secrets are revealed."
             },
             new Book
@@ -737,8 +737,8 @@ public class Seeder(
                 Price = 12.99,
                 NumberOfPages = 288,
                 InStock = true,
-                Comments = new List<Comment>
-                {
+                Comments =
+                [
                     new()
                     {
                         Id = Guid.NewGuid(),
@@ -746,7 +746,7 @@ public class Seeder(
                         Author = "Jane Doe",
                         PublishedOn = new DateTime(2024, 3, 23)
                     }
-                },
+                ],
                 Summary = "The Body in the Library follows Miss Marple as she investigates the murder of a young woman found in a wealthy family's library. Miss Marple must uncover the truth behind the seemingly perfect family."
             }
         ];

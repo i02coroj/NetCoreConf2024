@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NetConf2024Search.Seeder;
+using NetConf2024Search.Seeder.Helpers;
 
 var builder = new HostBuilder()
     .ConfigureLogging((hostingContext, logging) =>
@@ -17,10 +18,12 @@ var builder = new HostBuilder()
     })
     .ConfigureServices((hostContext, services) =>
     {
+
+        var dataSourceConnectionString = KeyVaultHelper.GetSecret(hostContext.Configuration, hostContext.Configuration.GetConnectionString("Books"));
         services
             .AddScoped<Seeder>()
             .AddDbContext<SearchDbContext>(options => options.UseSqlServer(
-                hostContext.Configuration.GetConnectionString("Books"),
+                dataSourceConnectionString,
                 sqlServerOptionsAction: sqlOptions =>
                 {
                     sqlOptions.MigrationsAssembly(typeof(SearchDbContext).Assembly.GetName().Name);
