@@ -169,8 +169,8 @@ public static class SearchBuilder
             name: indexerDto.IndexerName,
             dataSourceName: dataSource.Name,
             targetIndexName: indexerDto.TargetIndex);
+        
         SetIndexingSchedule(indexerDto, indexer);
-
         await AddSkills(indexerDto, indexerClient, indexer, keyVaultHelper);
         await indexerClient.CreateOrUpdateIndexerAsync(indexer);
     }
@@ -181,7 +181,7 @@ public static class SearchBuilder
         SearchIndexer indexer,
         IKeyVaultHelper keyVaultHelper)
     {
-        if (indexerDto.Skills?.Count != 0 == true && !string.IsNullOrEmpty(indexerDto.AttachedCognitiveServiceKey))
+        if (indexerDto.Skills?.Count != 0 == true && !string.IsNullOrEmpty(indexerDto.AttachedAIServicesKey))
         {
             var skills = new List<SearchIndexerSkill>();
             foreach (var skillDto in indexerDto.Skills!)
@@ -189,34 +189,96 @@ public static class SearchBuilder
                 skills.Add(skillDto.Type switch
                 {
                     "TextTranslation" => GetTextTranslationSkill(skillDto),
+                    "LanguageDetection" => GetLanguageDetectionSkill(skillDto),
+                    "Sentiment" => GetSentimentSkill(skillDto),
                     _ => throw new ArgumentException($"Skill {skillDto.Type} not supported")
                 });
             }
 
-            var attachedCognitiveServiceKey = await keyVaultHelper.GetSecretAsync(indexerDto.AttachedCognitiveServiceKey!);
+            var attachedAIServicesKey = await keyVaultHelper.GetSecretAsync(indexerDto.AttachedAIServicesKey!);
             var skillset = new SearchIndexerSkillset($"{indexerDto.IndexerName}-skillset", skills)
             {
-                CognitiveServicesAccount = new CognitiveServicesAccountKey(attachedCognitiveServiceKey)
+                CognitiveServicesAccount = new CognitiveServicesAccountKey(attachedAIServicesKey)
             };
             await indexerClient.CreateOrUpdateSkillsetAsync(skillset);
             indexer.SkillsetName = skillset.Name;
         }
     }
 
+    private static LanguageDetectionSkill GetLanguageDetectionSkill(SkillDto skillDto)
+    {
+        var languageDetectionSkill = new LanguageDetectionSkill(
+            [
+                new InputFieldMappingEntry("text")
+                {
+                    Source = $"/document/{skillDto.Inputs.First()}"
+                }
+            ],
+            [
+                new OutputFieldMappingEntry("languageCode")
+                {
+                    TargetName = skillDto.Outputs.First()
+                },
+                new OutputFieldMappingEntry("languageName")
+                {
+                    TargetName = skillDto.Outputs.Last()
+                },
+            ])
+            {
+                Name = "LanguageDetectionSkill",
+                Description = "Detect the language used in the document"
+            };
+
+        return languageDetectionSkill;
+    }
+
     private static TextTranslationSkill GetTextTranslationSkill(SkillDto skillDto)
     {
         return new TextTranslationSkill(
-            new List<InputFieldMappingEntry>
-            {
-                new("text") { Source = $"/document/{skillDto.Inputs.First()}" }
-            },
-            new List<OutputFieldMappingEntry>
-            {
-                new("translatedText") { TargetName = skillDto.Outputs.First() }
-            },
-            TextTranslationSkillLanguage.Ja)
+            [
+                new InputFieldMappingEntry("text")
+                {
+                    Source = $"/document/{skillDto.Inputs.First()}"
+                }
+            ],
+            [
+                new OutputFieldMappingEntry("translatedText")
+                {
+                    TargetName = skillDto.Outputs.First()
+                }
+            ],
+            TextTranslationSkillLanguage.Es)
         {
-            DefaultFromLanguageCode = TextTranslationSkillLanguage.En
+            Name = "TextTranslationSkill",
+            Description = "Translate text to Spanish"
+        };
+    }
+
+    private static SentimentSkill GetSentimentSkill(SkillDto skillDto)
+    {
+        return new SentimentSkill(
+            [
+                new InputFieldMappingEntry("text") 
+                { 
+                    Source = $"/document/{skillDto.Inputs.First()}"
+                },
+                new InputFieldMappingEntry("languageCode")
+                {
+                    Source = $"/document/{skillDto.Inputs.Last()}"
+                }
+            ],
+            [
+                new OutputFieldMappingEntry("sentiment") 
+                {
+                    TargetName = skillDto.Outputs.First()
+                }
+            ],
+            SentimentSkill.SkillVersion.V3)
+        {
+            Name = "SentimentSkill",
+            Description = "Detect sentiment in pesonal opinion fields",
+            DefaultLanguageCode = "en",
+            Context = "/document"
         };
     }
 

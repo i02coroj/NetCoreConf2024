@@ -1,4 +1,5 @@
 ﻿using Azure.Search.Documents.Indexes;
+using System.Text.Json.Serialization;
 
 namespace NetConf2024Search.API.Model;
 

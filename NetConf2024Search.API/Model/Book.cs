@@ -18,6 +18,9 @@ public sealed class Book
     [SearchableField(AnalyzerName = LexicalAnalyzerName.Values.EnMicrosoft)]
     public string? Summary { get; init; }
 
+    [SearchableField(AnalyzerName = LexicalAnalyzerName.Values.EsMicrosoft)]
+    public string? SummaryTranslated { get; init; }
+
     [SearchableField(IsSortable = true, IsFacetable = true)]
     public required string Gendre { get; init; }
 
@@ -51,6 +54,12 @@ public sealed class Book
     public Comment[]? Comments { get; init; }
 
     public Language[]? Languages { get; init; }
+
+    [SearchableField]
+    public string? LanguageCode { get; set; }
+
+    [SearchableField]
+    public string? LanguageName { get; set; }
 
     [JsonIgnore]
     public string LanguagesRaw => Languages != null ? string.Join(",", Languages.Select(l => l.LanguageName)) : string.Empty;

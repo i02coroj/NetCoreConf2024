@@ -22,7 +22,7 @@ public class IndexerSettingsDto
 
     public int? IndexingScheduleInMin { get; set; }
 
-    public string? AttachedCognitiveServiceKey { get; set; }
+    public string? AttachedAIServicesKey { get; set; }
 
     public List<SkillDto>? Skills { get; set; }
 }
