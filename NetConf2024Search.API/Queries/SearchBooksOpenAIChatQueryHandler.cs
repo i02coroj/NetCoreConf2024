@@ -12,13 +12,12 @@ using Azure.AI.OpenAI.Chat;
 namespace NetConf2024Search.API.Queries;
 
 public class SearchBooksOpenAIChatQueryHandler(
-    IKeyVaultHelper keyVaultHelper,
+    IKeyVaultHelper _keyVaultHelper,
     IOptions<SearchSettingsDto> searchSettings,
     IOptions<OpenAISettingsDto> openAISettingsDto) : IRequestHandler<SearchBooksOpenAIChatQuery, SearchBooksOpenAIChatQueryResponse>
 {
     private readonly SearchSettingsDto _searchSettings = searchSettings?.Value ?? throw new ArgumentNullException(nameof(searchSettings));
     private readonly OpenAISettingsDto _openAISettings = openAISettingsDto?.Value ?? throw new ArgumentNullException(nameof(openAISettingsDto));
-    private readonly IKeyVaultHelper _keyVaultHelper = keyVaultHelper ?? throw new ArgumentNullException(nameof(keyVaultHelper));
     private readonly string _indexName = "books-index";
 
     public async Task<SearchBooksOpenAIChatQueryResponse> Handle(
@@ -46,8 +45,8 @@ public class SearchBooksOpenAIChatQueryHandler(
             Endpoint = new Uri(_searchSettings.SearchUri),
             IndexName = _indexName,
             Authentication = DataSourceAuthentication.FromApiKey(searchKey),
-            QueryType = DataSourceQueryType.Semantic,
-            SemanticConfiguration = $"{_indexName}-semantic-config"
+            QueryType = DataSourceQueryType.Simple
+            //SemanticConfiguration = $"{_indexName}-semantic-config"
         });
 
         var messages = new List<ChatMessage>
@@ -60,7 +59,7 @@ public class SearchBooksOpenAIChatQueryHandler(
         return new SearchBooksOpenAIChatQueryResponse
         {
             MessageContent = $"{completion.Value.Role}: {completion.Value.Content[0].Text}",
-            Citations = message.Citations.Select(citation => $"{citation.Title}: {citation.Content}")?.ToList()
+            Citations = message.Citations.Select(citation => citation.Content)?.ToList()
         };
     }
 }

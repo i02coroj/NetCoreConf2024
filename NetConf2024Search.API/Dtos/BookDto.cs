@@ -10,6 +10,12 @@ public class BookDto
 
     public string? Summary { get; set; }
 
+    public string? SummaryTranslated { get; set; }
+
+    public string? LanguageCode { get; set; }
+
+    public string? LanguageName { get; set; }
+
     public required string Gendre { get; set; }
 
     public DateTime PublishedOn { get; set; }
@@ -29,6 +35,8 @@ public class BookDto
     public required string AuthorName { get; set; }
 
     public string? AuthorBio { get; set; }
+
+    public string? Sentiment { get; set; }
 
     public double? Score { get; set; }
 

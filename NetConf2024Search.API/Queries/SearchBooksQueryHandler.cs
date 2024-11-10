@@ -55,6 +55,9 @@ public class SearchBooksQueryHandler(
                 Title = r.Document.Title,
                 Reference = r.Document.Reference,
                 Summary = r.Document.Summary,
+                SummaryTranslated = r.Document.SummaryTranslated,
+                LanguageCode = r.Document.LanguageCode,
+                LanguageName = r.Document.LanguageName,
                 Gendre = r.Document.Gendre,
                 InStock = r.Document.InStock,
                 NumberOfPages = r.Document.NumberOfPages,
@@ -62,6 +65,7 @@ public class SearchBooksQueryHandler(
                 PublishedOn = r.Document.PublishedOn,
                 AuthorName = r.Document.AuthorName,
                 AuthorBio = r.Document.AuthorBio,
+                Sentiment = r.Document.Sentiment,
                 LanguagesRaw = r.Document.LanguagesRaw,
                 MostRecentComment = r.Document.MostRecentComment,
                 NumberOfComments = r.Document.NumberOfComments,
@@ -111,10 +115,14 @@ public class SearchBooksQueryHandler(
         options.Select.Add(nameof(Book.Title));
         options.Select.Add(nameof(Book.Reference));
         options.Select.Add(nameof(Book.Summary));
+        options.Select.Add(nameof(Book.SummaryTranslated));
+        options.Select.Add(nameof(Book.LanguageCode));
+        options.Select.Add(nameof(Book.LanguageName));
         options.Select.Add(nameof(Book.Gendre));
         options.Select.Add(nameof(Book.AuthorFirstName));
         options.Select.Add(nameof(Book.AuthorLastName));
         options.Select.Add(nameof(Book.AuthorBio));
+        options.Select.Add(nameof(Book.Sentiment));
         options.Select.Add(nameof(Book.InStock));
         options.Select.Add(nameof(Book.PublishedOn));
         options.Select.Add(nameof(Book.Price));

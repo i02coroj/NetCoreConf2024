@@ -46,6 +46,13 @@ public class Seeder(
         new Author
         {
             Id = Guid.NewGuid(),
+            FirstName = "Bad",
+            LastName = "Author",
+            Bio = "This is a really bad author, nobody should read anything from him."
+        },
+        new Author
+        {
+            Id = Guid.NewGuid(),
             FirstName = "Annonymous",
             LastName = "Annonymous",
             Bio = "Annonymous author"
@@ -748,7 +755,23 @@ public class Seeder(
                     }
                 ],
                 Summary = "The Body in the Library follows Miss Marple as she investigates the murder of a young woman found in a wealthy family's library. Miss Marple must uncover the truth behind the seemingly perfect family."
-            }
+            },
+            new Book
+            {
+                Id = Guid.NewGuid(),
+                Title = "Bad book",
+                Reference = "978-0-385-12167-7",
+                Gendre = "Horror",
+                AuthorId = _authors.First(a => a.FirstName=="Bad").Id,
+                Author = _authors.First(a => a.FirstName=="Bad"),
+                PublishedOn = new DateTime(2024, 1, 1),
+                LastModifiedDt = new DateTimeOffset(2024, 1, 1, 0, 0, 0, TimeSpan.Zero),
+                Languages = "English",
+                Price = 39.99,
+                NumberOfPages = 447,
+                InStock = false,
+                Summary = "Bad book from bad author."
+            },
         ];
 
 

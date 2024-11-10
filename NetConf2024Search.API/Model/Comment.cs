@@ -15,9 +15,6 @@ public class Comment
     [SimpleField]
     public DateTime PublishedOn { get; init; }
 
-    [SearchableField]
-    public string? Sentiment{ get; init; }
-
     [JsonIgnore]
     public string CommentSummary => $"{Text} ({Author} - {PublishedOn})";
 }

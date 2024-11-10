@@ -61,6 +61,9 @@ public sealed class Book
     [SearchableField]
     public string? LanguageName { get; set; }
 
+    [SearchableField]
+    public string? Sentiment { get; init; }
+
     [JsonIgnore]
     public string LanguagesRaw => Languages != null ? string.Join(",", Languages.Select(l => l.LanguageName)) : string.Empty;
 

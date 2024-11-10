@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetConf2024Search.API.Dtos;
 using NetConf2024Search.API.Helpers;
+using System;
 
 namespace NetConf2024Search.API;
 
@@ -188,9 +189,9 @@ public static class SearchBuilder
             {
                 skills.Add(skillDto.Type switch
                 {
-                    "TextTranslation" => GetTextTranslationSkill(skillDto),
-                    "LanguageDetection" => GetLanguageDetectionSkill(skillDto),
-                    "Sentiment" => GetSentimentSkill(skillDto),
+                    "TextTranslation" => GetTextTranslationSkill(indexer, skillDto),
+                    "LanguageDetection" => GetLanguageDetectionSkill(indexer, skillDto),
+                    "Sentiment" => GetSentimentSkill(indexer, skillDto),
                     _ => throw new ArgumentException($"Skill {skillDto.Type} not supported")
                 });
             }
@@ -205,7 +206,7 @@ public static class SearchBuilder
         }
     }
 
-    private static LanguageDetectionSkill GetLanguageDetectionSkill(SkillDto skillDto)
+    private static LanguageDetectionSkill GetLanguageDetectionSkill(SearchIndexer indexer, SkillDto skillDto)
     {
         var languageDetectionSkill = new LanguageDetectionSkill(
             [
@@ -229,12 +230,22 @@ public static class SearchBuilder
                 Description = "Detect the language used in the document"
             };
 
+        indexer.OutputFieldMappings.Add(new($"/document/{skillDto.Outputs.First()}")
+        {
+            TargetFieldName = skillDto.Outputs.First()
+        });
+
+        indexer.OutputFieldMappings.Add(new($"/document/{skillDto.Outputs.Last()}")
+        {
+            TargetFieldName = skillDto.Outputs.Last()
+        });
+
         return languageDetectionSkill;
     }
 
-    private static TextTranslationSkill GetTextTranslationSkill(SkillDto skillDto)
-    {
-        return new TextTranslationSkill(
+   private static TextTranslationSkill GetTextTranslationSkill(SearchIndexer indexer, SkillDto skillDto)
+   {
+        var translationSkill = new TextTranslationSkill(
             [
                 new InputFieldMappingEntry("text")
                 {
@@ -250,13 +261,22 @@ public static class SearchBuilder
             TextTranslationSkillLanguage.Es)
         {
             Name = "TextTranslationSkill",
-            Description = "Translate text to Spanish"
+            Description = "Translate text to Spanish",
+            DefaultFromLanguageCode = "en",
+            DefaultToLanguageCode = "es"
         };
+
+        indexer.OutputFieldMappings.Add(new($"/document/{skillDto.Outputs.First()}")
+        {
+            TargetFieldName = skillDto.Outputs.First()
+        });
+
+        return translationSkill;
     }
 
-    private static SentimentSkill GetSentimentSkill(SkillDto skillDto)
+    private static SentimentSkill GetSentimentSkill(SearchIndexer indexer, SkillDto skillDto)
     {
-        return new SentimentSkill(
+        var sentimentSkill = new SentimentSkill(
             [
                 new InputFieldMappingEntry("text") 
                 { 
@@ -277,9 +297,15 @@ public static class SearchBuilder
         {
             Name = "SentimentSkill",
             Description = "Detect sentiment in pesonal opinion fields",
-            DefaultLanguageCode = "en",
-            Context = "/document"
+            DefaultLanguageCode = "en"
         };
+
+        indexer.OutputFieldMappings.Add(new($"/document/{skillDto.Outputs.First()}")
+        {
+            TargetFieldName = skillDto.Outputs.First()
+        });
+
+        return sentimentSkill;
     }
 
     private static void SetIndexingSchedule(IndexerSettingsDto indexerDto, SearchIndexer indexer)
